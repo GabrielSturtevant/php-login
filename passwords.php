@@ -1,6 +1,6 @@
 <?php
 class password{
-    public function get_hash($salt, $password){
+    public function get_hash($password){
         $options = array();
         $options['cost'] = 11;
 
