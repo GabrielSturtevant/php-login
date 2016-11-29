@@ -1,17 +1,12 @@
 <?php
 class connection {
 
-  //mysql credentials
-  private $servername = "localhost";
-  private $username = "root";
-  private $password = "password";
-
   //connection to mysql
   private $conn;
 
-  //constructor
   public function __construct() {
-  	$this->conn = new mysqli($this->servername, $this->username, $this->password);
+	  $config = parse_ini_file('../private/credentials.ini');
+  	$this->conn = new mysqli($config['servername'], $config['username'],$config['password']);
   	$this->conn->query("USE secure_database");
   }
 
