@@ -9,6 +9,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']){
 include_once 'passwords.php';
 include_once 'connection.php';
 include_once 'send_email.php';
+include_once 'checkstring.php';
 
 if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['first_name'])
     && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['g-recaptcha-response'])
@@ -16,12 +17,26 @@ if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['first
     $pass = new password();
     $conn = new connection();
     $email_sender = new send_email();
+    $checker = new CheckString();
 
     $username = strtolower((string)$_POST['username']);
     $password = (string)$_POST['password'];
     $email = (string)$_POST['email'];
     $first_name = (string)$_POST['first_name'];
     $last_name = (string)$_POST['last_name'];
+
+    if(!$checker->checkPassword($password)){
+        $_SESSION['redirect_message'] = "Please choose a different password";
+        header('Location: redirect.php');
+    }
+    if(!$checker->checkEmail($email)){
+        $_SESSION['redirect_message'] = "Please choose a valid email";
+        header('Location: redirect.php');
+    }
+    if(!$checker->checkUserName($username)){
+        $_SESSION['redirect_message'] = "Please choose a valid username";
+        header('Location: redirect.php');
+    }
 
     $results = $conn->check_availability($username);
 
@@ -84,7 +99,7 @@ if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['first
         <input type="password" name="password-dup" id="password-dup" class="form-control" style="margin-bottom: 0%" placeholder="Re-enter password" onkeyup="password_match();" required>
         <div class="" id="passwords-match" style="margin-bottom: 0%"></div>
         <div class="g-recaptcha" data-sitekey="6LeOFg0UAAAAAMTIt9xo7hXHZsHmGDmX-ef99_HO"></div>
-        <button class="btn btn-lg btn-primary btn-block" id="create" disabled type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" id="create" disabled type="submit">Submit</button>
     </form>
 </div> <!-- /container -->
 <?php include "template/footer.php"; ?>

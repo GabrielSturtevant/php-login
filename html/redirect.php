@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	$message = $_SESSION['redirect_message'];
+	unset($_SESSION['redirect_message']);
 	header('refresh:3, index.php');
 ?>
 

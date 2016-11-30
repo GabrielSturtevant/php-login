@@ -36,5 +36,6 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false){
 <div class="jumbotron">
     <h2><?php echo "Hello ".ucfirst($first_name)."!<br/>"?></h2>
     <h3><?php echo $message; ?></h3>
+    <h4><a href="download.php">Super Secret File</a></h4>
 </div>
 <?php include "templates/footer.php"; ?>
