@@ -103,5 +103,3 @@ if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['first
     </form>
 </div> <!-- /container -->
 <?php include "template/footer.php"; ?>
-</body>
-</html>

@@ -113,7 +113,6 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['log_
 
 <?php include 'templates/headder.php'; ?>
 <?php include "templates/home.php";?>
-<div class="container">
     <form class="form-signin" method="post" action="">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="username" class="sr-only">Username</label>
@@ -140,7 +139,4 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['log_
             }
         ?>
     </form>
-</div> <!-- /container -->
 <?php include "template/footer.php"; ?>
-</body>
-</html>
